@@ -1,2 +1,9 @@
 # freerider
-Locate local car2go vehicles that are less than %25 fueled
+Locate local car2go vehicles that are less than 25 percent fueled.
+
+## Why?
+car2go offers 15 minutes of free time when you refuel a vehicle that is less than 25 percent fueled.
+freerider identifies car2go vehicles in your area which you can refuel for free minutes!
+
+## What?
+freerider is a command-line tool that leverages [exising geolocation applications] (http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocation-from-terminal) and [the car2go api] (https://code.google.com/p/car2go/wiki/index_v2_1).
