@@ -5,7 +5,7 @@ class Formatter
     maps_uri = self.format_maps_uri vehicle
     stats = self.format_status vehicle
 
-    "#{address} #{stats}\n#{maps_uri}"
+    "#{address}\n#{stats}\n#{maps_uri}"
   end
 
   def self.format_address(vehicle)

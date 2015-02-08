@@ -5,7 +5,7 @@ describe Formatter do
 
   describe '#format_vehicle' do
     it 'should return a formatted representation of a vehicle' do
-      expect(Formatter.format_vehicle(vehicle)).to eq "1600 Grand Ave, St Paul <<FUEL: 26>> AB6860\nhttps://www.google.com/maps/place/@44.93999,-93.16789,17z"
+      expect(Formatter.format_vehicle(vehicle)).to eq "1600 Grand Ave, St Paul\n<<FUEL: 26>> AB6860\nhttps://www.google.com/maps/place/@44.93999,-93.16789,17z"
     end
   end
 

@@ -16,5 +16,10 @@ vehicles.each { |vehicle|
   puts Formatter.format_vehicle(vehicle.to_json)
 }
 puts '=========================='
-vehicles.size.times { print 'C'}
+if vehicles.size > 0
+  vehicles.size.times { print 'C'}
+  print ' cars found'
+else
+  print "No cars found with a fuel level below twenty-five percent" if vehicles.size == 0
+end
 puts "\n=========================="
