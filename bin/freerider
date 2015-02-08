@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require 'freerider'
+
+key = ARGV[0]
+
+if !key
+  puts 'You must supply a customer_key' if !key
+  exit
+end
+
+freerider = Freerider.new(key.chomp)
+puts freerider.get_low_fuel_vehicles

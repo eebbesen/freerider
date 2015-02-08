@@ -17,7 +17,7 @@ class Freerider
   end
 
   def get_vehicles
-    open(build_uri('vehicles'))
+    open(build_uri('vehicles')).read
   end
 
   def build_uri(endpoint)

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["git.eebbesen@gmail.com"]
   spec.summary       = %q{Locate local car2go vehicles that need to be fueled.}
   spec.description   = %q{car2go offers 15 minutes of free time when you refuel a vehicle that is less than 25 percent fueled. freerider identifies car2go vehicles in your area which you can refuel for free minutes!}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/eebbesen/freerider"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

@@ -29,7 +29,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+After packaging you can run as:
+
+    $ bin/freerider <your_car2go_key>
 
 ## Contributing
 
@@ -38,3 +40,8 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
+
+
+## Helpful tools
+### Get geocode for address
+http://www.gpsvisualizer.com/geocode
