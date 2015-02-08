@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe Freerider do
   subject { Freerider.new('fake_key')}
-  let (:vehicles_json) {'{"placemarks":[{"address":"Grand Ave 1600, 55105 St Paul","coordinates":[-93.16789,44.93999,0],"engineType":"CE","exterior":"GOOD","fuel":26,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA0AA0AA000000"},{"address":"West Kellogg Boulevard 15, 55102 St Paul","coordinates":[-93.093654,44.943895,0],"engineType":"CE","exterior":"GOOD","fuel":25,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA1AA1AA111111"},{"address":"South 5th Street 350, 55415 Minneapolis","coordinates":[-93.265769,44.976851,0],"engineType":"CE","exterior":"GOOD","fuel":24,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA2AA2AA222222"}]}'}
+  let (:vehicles_json) {{"placemarks":[{"address":"Grand Ave 1600, 55105 St Paul","coordinates":[-93.16789,44.93999,0],"engineType":"CE","exterior":"GOOD","fuel":26,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA0AA0AA000000"},{"address":"West Kellogg Boulevard 15, 55102 St Paul","coordinates":[-93.093654,44.943895,0],"engineType":"CE","exterior":"GOOD","fuel":25,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA1AA1AA111111"},{"address":"South 5th Street 350, 55415 Minneapolis","coordinates":[-93.265769,44.976851,0],"engineType":"CE","exterior":"GOOD","fuel":24,"interior":"GOOD","name":"AB6860","smartPhoneRequired":false,"vin":"AAAAA2AA2AA222222"}]}}
 
   describe '#build_uri' do
     it 'properly builds an URI' do
@@ -14,14 +14,15 @@ describe Freerider do
 
   describe '#get_vehicles' do
     it 'should return json for all vehicles in the city' do
-      subject.stub_chain(:open, :read).and_return(vehicles_json)
+      allow(subject).to receive_message_chain(:open, :read).and_return(vehicles_json)
       vehicles = subject.get_vehicles
+      expect(vehicles.size).to eq vehicles_json.size
     end
   end
 
   describe '#get_low_fuel_vehicles' do
     it 'returns only cars with less than twenty-five percent fuel' do
-      subject.stub_chain(:open, :read).and_return(vehicles_json)
+      allow(subject).to receive_message_chain(:open, :read).and_return(vehicles_json.to_json)
       vehicles = subject.get_low_fuel_vehicles
       expect(vehicles.size).to eq 1
     end

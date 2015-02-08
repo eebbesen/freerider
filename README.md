@@ -4,7 +4,9 @@ Locate local car2go vehicles that are less than 25 percent fueled.
 
 
 ### What?
-freerider is a command-line tool that leverages [exising geolocation applications] (http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocationfrom-terminal) and [the car2go api] (https://code.google.com/p/car2go/wiki/index_v2_1).
+freerider is a command-line tool that leverages [exising geolocation applications](http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocationfrom-terminal) and [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1).
+
+You need to [get your own consumer key from car2go](https://www.car2go.com/en/austin/car2go-apps/).
 
 ### Why?
 car2go offers 15 minutes of free time when you refuel a vehicle that is less than 25 percent fueled.
@@ -31,7 +33,7 @@ Or install it yourself as:
 
 After packaging you can run as:
 
-    $ bin/freerider <your_car2go_key>
+    $ bin/freerider <your_car2go_consumer_key>
 
 ## Contributing
 

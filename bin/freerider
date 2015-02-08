@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'freerider'
+require 'formatter'
 
 key = ARGV[0]
 
@@ -9,5 +10,11 @@ if !key
   exit
 end
 
-freerider = Freerider.new(key.chomp)
-puts freerider.get_low_fuel_vehicles
+vehicles = Freerider.new(key.chomp).get_low_fuel_vehicles
+vehicles.each { |vehicle| 
+  puts '=============================================================='
+  puts Formatter.format_vehicle(vehicle.to_json)
+}
+puts '=========================='
+vehicles.size.times { print 'C'}
+puts "\n=========================="
