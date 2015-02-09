@@ -28,7 +28,7 @@ class Formatter
     longitude = geocode[1]
     accuracy = geocode[2]
 
-    "https://www.google.com/maps/place/@#{longitude},#{latitude},17z"
+    "https://www.google.com/maps/preview?q=#{longitude},#{latitude}"
   end
 
   def self.format_status(vehicle)
