@@ -13,7 +13,7 @@ class Freerider
   def get_low_fuel_vehicles
     all_vehicles = get_vehicles
     vehicle_json = JSON.parse(all_vehicles)['placemarks']
-    (vehicle_json.collect { |vehicle| vehicle if vehicle['fuel'] < 25 }).compact
+    (vehicle_json.select { |vehicle| vehicle['fuel'] < 25 }).compact
   end
 
   def get_vehicles
