@@ -4,7 +4,7 @@ Locate local car2go vehicles that are less than 25 percent fueled.
 
 
 ### What?
-freerider is a command-line tool that leverages [exising geolocation applications](http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocationfrom-terminal) and [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1).
+freerider is a gem that leverages [exising geolocation applications](http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocationfrom-terminal) and [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1).
 
 You need to [get your own consumer key from car2go](https://www.car2go.com/en/austin/car2go-apps/).
 
@@ -47,3 +47,4 @@ After packaging you can run as:
 ## Helpful tools
 ### Get geocode for address
 http://www.gpsvisualizer.com/geocode
+I use this to generate geocode for addresses for testing

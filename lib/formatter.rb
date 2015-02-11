@@ -1,6 +1,5 @@
 class Formatter
   def self.format_vehicle(vehicle)
-    # ugh, sorry 
     address = self.format_address vehicle
     maps_uri = self.format_maps_uri vehicle
     stats = self.format_status vehicle
