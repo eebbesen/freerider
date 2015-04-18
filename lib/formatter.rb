@@ -1,3 +1,4 @@
+require 'pry'
 class Formatter
   def self.format_vehicle(vehicle)
     address = self.format_address vehicle
@@ -13,12 +14,14 @@ class Formatter
     street_address = address_parts[0].split ' '
     number = street_address.pop
     street_address = street_address.join ' '
-    
-    city = address_parts[1].split ' '
-    city.shift
-    city = city.join ' '
+    display_address = "#{number} #{street_address}"
+    if address_parts[1]
+      ciudad = address_parts[1].split ' '
+      ciudad.shift
+      display_address += ", #{ciudad.join ' '}"
+    end
 
-    "#{number} #{street_address}, #{city}"
+    display_address
   end
 
   def self.format_maps_uri(vehicle)
