@@ -1,4 +1,3 @@
-require 'pry'
 class Formatter
   def self.format_vehicle(vehicle)
     address = self.format_address vehicle

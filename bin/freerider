@@ -3,14 +3,17 @@
 require 'freerider'
 require 'formatter'
 
-key = ARGV[0]
+key = ARGV[0] if ARGV[0]
+location = ARGV[1].chomp if ARGV[1]
 
 if !key
   puts 'You must supply a customer_key' if !key
   exit
 end
 
-vehicles = Freerider.new(key.chomp).get_low_fuel_vehicles
+puts 'location will default' if !location || location.empty?
+
+vehicles = Freerider.new(key, location).get_low_fuel_vehicles
 vehicles.each { |vehicle| 
   puts '=============================================================='
   puts Formatter.format_vehicle(vehicle.to_json)

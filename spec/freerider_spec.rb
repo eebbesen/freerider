@@ -8,12 +8,14 @@ describe Freerider do
 
   describe '#build_uri' do
     it 'properly builds an URI' do
-      expect(subject.build_uri('something')).to eq "https://www.car2go.com/api/v2.1/something?loc=minneapolis&oauth_consumer_key=fake_key&format=json" 
+      expect(subject.location).to eq 'twincities'
+      expect(subject.build_uri('something')).to eq "https://www.car2go.com/api/v2.1/something?loc=twincities&oauth_consumer_key=fake_key&format=json" 
     end
   end
 
   describe '#get_vehicles' do
     it 'should return json for all vehicles in the city' do
+      expect(subject.location).to eq 'twincities'
       allow(subject).to receive_message_chain(:open, :read).and_return(vehicles_json)
       vehicles = subject.get_vehicles
       expect(vehicles.size).to eq vehicles_json.size
@@ -22,10 +24,30 @@ describe Freerider do
 
   describe '#get_low_fuel_vehicles' do
     it 'returns only cars with less than twenty-five percent fuel' do
+      expect(subject.location).to eq 'twincities'
       allow(subject).to receive_message_chain(:open, :read).and_return(vehicles_json.to_json)
       vehicles = subject.get_low_fuel_vehicles
       expect(vehicles.size).to eq 1
     end
   end
 
+  describe '#initialize' do
+    it 'defaults with empty string for location' do
+      subject { Freerider.new('fake_key', '')}
+      expect(subject.location).to eq 'twincities'
+    end
+
+    it 'defaults with nil for location' do
+      subject { Freerider.new('fake_key', nil)}
+      expect(subject.location).to eq 'twincities'
+    end
+
+    describe  'initializes with passed in location' do
+      subject { Freerider.new('fake_key', 'kobenhavn')}
+
+      it 'uses the passed in location' do
+        expect(subject.location).to eq 'kobenhavn'
+      end
+    end
+  end
 end

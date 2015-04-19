@@ -36,7 +36,7 @@ or run build.sh
 ## Usage
 
 After packaging you can run
-    $ bin/freerider <your_car2go_consumer_key>
+    $ bin/freerider <your_car2go_consumer_key> <location>
 
 ## Dependencies
 I have specified Ruby 2.2.0 in the Gemfile, but you can probably get away with any version 2.0.0 or greater.  Ruby 1.9.3 will not work.

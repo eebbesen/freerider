@@ -4,10 +4,15 @@ require 'json'
 
 class Freerider
   CAR2GO_URI = 'https://www.car2go.com/api/v2.1'
-  MPLS = 'minneapolis'
+  TC = 'twincities'
 
-  def initialize(consumer_key)
+  def initialize(consumer_key, location=TC)
     @consumer_key = consumer_key
+    @location = if location && !location.empty?
+      location
+    else
+      TC
+    end
   end
 
   def get_low_fuel_vehicles
@@ -21,7 +26,10 @@ class Freerider
   end
 
   def build_uri(endpoint)
-    "#{CAR2GO_URI}/#{endpoint}?loc=#{MPLS}&oauth_consumer_key=#{@consumer_key}&format=json"
+    "#{CAR2GO_URI}/#{endpoint}?loc=#{@location}&oauth_consumer_key=#{@consumer_key}&format=json"
   end
 
+  def location
+    @location
+  end
 end
