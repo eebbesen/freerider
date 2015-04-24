@@ -1,8 +1,8 @@
 class Formatter
   def self.format_vehicle(vehicle)
-    address = self.format_address vehicle
-    maps_uri = self.format_maps_uri vehicle
-    stats = self.format_status vehicle
+    address = format_address vehicle
+    maps_uri = format_maps_uri vehicle
+    stats = format_status vehicle
 
     "#{address}\n#{stats}\n#{maps_uri}"
   end
@@ -35,7 +35,7 @@ class Formatter
   def self.format_status(vehicle)
     fuel_level = (JSON.parse vehicle)['fuel']
     license_plate = (JSON.parse vehicle)['name']
-    
+
     "<<FUEL: #{fuel_level}>> #{license_plate}"
   end
 end

@@ -6,12 +6,12 @@ class Freerider
   CAR2GO_URI = 'https://www.car2go.com/api/v2.1'
   TC = 'twincities'
 
-  def initialize(consumer_key, location=TC)
+  def initialize(consumer_key, location = TC)
     @consumer_key = consumer_key
     @location = if location && !location.empty?
-      location
-    else
-      TC
+                  location
+                else
+                  TC
     end
   end
 
@@ -29,7 +29,5 @@ class Freerider
     "#{CAR2GO_URI}/#{endpoint}?loc=#{@location}&oauth_consumer_key=#{@consumer_key}&format=json"
   end
 
-  def location
-    @location
-  end
+  attr_reader :location
 end
