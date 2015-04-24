@@ -6,23 +6,23 @@ require 'formatter'
 key = ARGV[0] if ARGV[0]
 location = ARGV[1].chomp if ARGV[1]
 
-if !key
-  puts 'You must supply a customer_key' if !key
+unless key
+  puts 'You must supply a customer_key' unless key
   exit
 end
 
 puts 'location will default' if !location || location.empty?
 
 vehicles = Freerider.new(key, location).get_low_fuel_vehicles
-vehicles.each { |vehicle| 
+vehicles.each do |vehicle|
   puts '=============================================================='
   puts Formatter.format_vehicle(vehicle.to_json)
-}
+end
 puts '=========================='
 if vehicles.size > 0
-  vehicles.size.times { print 'C'}
+  vehicles.size.times { print 'C' }
   print ' cars found'
 else
-  print "No cars found with a fuel level below twenty-five percent" if vehicles.size == 0
+  print 'No cars found with a fuel level below twenty-five percent' if vehicles.size == 0
 end
 puts "\n=========================="
