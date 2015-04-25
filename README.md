@@ -29,12 +29,11 @@ Or install it yourself as:
     $ gem install freerider
 
 ## Packaging
-```rake build
-```
+`rake build`
 
-or run 
+or run
 
-`./build` 
+`./build`
 
 to build _and_ install the gem
 
