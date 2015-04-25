@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+require 'fileutils'
+
+build_return = `gem build freerider.gemspec`
+
+gemfile = ''
+lines = build_return.split "\n"
+puts lines
+lines.each do |line|
+  gemfile = line.split(' ')[1] if line.start_with? '  File: '
+end
+
+puts `gem install freerider`
+
+FileUtils.mv(gemfile, './pkg/')

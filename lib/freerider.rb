@@ -1,33 +1,30 @@
 require 'freerider/version'
-require 'open-uri'
-require 'json'
+require 'caruby2go'
 
+##
+# Process values from car2go API calls
 class Freerider
-  CAR2GO_URI = 'https://www.car2go.com/api/v2.1'
   TC = 'twincities'
 
-  def initialize(consumer_key, location = TC)
-    @consumer_key = consumer_key
-    @location = if location && !location.empty?
-                  location
-                else
-                  TC
+  def initialize(location, consumer_key = ENV['CONSUMER_KEY'])
+    @car2go = Caruby2go.new(consumer_key, default_if_empty(location, TC))
+  end
+
+  def find_vehicles(upper_fuel_threshold = 25)
+    upper_fuel_threshold = default_if_empty(upper_fuel_threshold, 25)
+    (@car2go.vehicles.select do |vehicle|
+       vehicle['fuel'] < upper_fuel_threshold
+     end
+    ).compact
+  end
+
+  private
+
+  def default_if_empty(value, default)
+    if !value || (value.respond_to?('empty?') && value.empty?)
+      default
+    else
+      value
     end
   end
-
-  def get_low_fuel_vehicles
-    all_vehicles = get_vehicles
-    vehicle_json = JSON.parse(all_vehicles)['placemarks']
-    (vehicle_json.select { |vehicle| vehicle['fuel'] < 25 }).compact
-  end
-
-  def get_vehicles
-    open(build_uri('vehicles')).read
-  end
-
-  def build_uri(endpoint)
-    "#{CAR2GO_URI}/#{endpoint}?loc=#{@location}&oauth_consumer_key=#{@consumer_key}&format=json"
-  end
-
-  attr_reader :location
 end
