@@ -31,7 +31,7 @@ Or install it yourself as:
 ## Packaging
 ```rake build
 ```
-or run build.sh
+or run ./build to build _and_ install the gem
 
 ## Usage
 
