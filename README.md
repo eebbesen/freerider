@@ -4,7 +4,7 @@ freerider identifies car2go vehicles in your area which you can refuel for free 
 
 
 ### What?
-freerider is a gem that leverages [exising geolocation applications](http://apple.stackexchange.com/questions/60152/is-there-a-way-to-access-a-macs-geolocationfrom-terminal) and [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1) to locate local car2go vehicles that are less than 25 percent fueled.
+freerider is a gem that uses [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1) to locate local car2go vehicles that are less than a specified percent fueled.
 
 You need to [get your own consumer key from car2go](https://www.car2go.com/en/austin/car2go-apps/).
 
@@ -31,12 +31,25 @@ Or install it yourself as:
 ## Packaging
 ```rake build
 ```
-or run ./build to build _and_ install the gem
+
+or run 
+
+`./build` 
+
+to build _and_ install the gem
 
 ## Usage
 
 After packaging you can run
-    $ bin/freerider <your_car2go_consumer_key> <location>
+
+    $ CONSUMER_KEY=<your_car2go_consumer_key> bin/freerider [<location>] [<fuel_threshold>]
+or
+
+    $ export CONSUMER_KEY=<your_car2go_consumer_key> 
+    $ bin/freerider [<location>] [<fuel_threshold>]
+
+`location` will default to `twincities`.
+`fuel_threshold` will default to `25`.
 
 ## Dependencies
 I have specified Ruby 2.2.0 in the Gemfile, but you can probably get away with any version 2.0.0 or greater.  Ruby 1.9.3 will not work.

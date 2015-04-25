@@ -24,10 +24,17 @@ vehicles.each do |vehicle|
   puts Formatter.format_vehicle(vehicle.to_json)
 end
 puts summary_border
+# 25 is the current default
+notify_suffix = "with a fuel level below #{threshold || 25} percent"
 if vehicles.size > 0
-  vehicles.size.times { print 'C' }
-  print ' cars found'
+  cars = if vehicles.size > 1
+           'cars'
+         else
+           'car'
+         end
+
+  print "#{vehicles.size} #{cars} found #{notify_suffix}"
 else
-  print "No cars found with a fuel level below #{threshold || 'unspecified'} percent" if vehicles.size == 0
+  print "No cars found #{notify_suffix}"
 end
 puts "\n#{summary_border}"
