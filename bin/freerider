@@ -1,40 +1,57 @@
 #!/usr/bin/env ruby
 
-require 'freerider'
-require 'formatter'
+require 'thor'
+require_relative '../lib/freerider'
+require_relative '../lib/formatter'
 
-SUMMARY_BORDER = '=========================='
-RECORD_DELIMITER = SUMMARY_BORDER + SUMMARY_BORDER
+##
+# Command-line interface for Freerider
+class FreeriderScript < Thor
+  SUMMARY_BORDER = '=========================='
+  RECORD_DELIMITER = SUMMARY_BORDER + SUMMARY_BORDER
 
-key = ENV['CONSUMER_KEY']
-location = ARGV[0].chomp if ARGV[0]
-fuel_threshold = ARGV[1].chomp.to_i if ARGV[1]
+  desc 'vehicles', "Get vehicles: location defaults to 'twincities', fuel_threshold defaults to '25'"
+  option :location, default: 'twincities', aliases: :l
+  option :fuel_threshold, type: :numeric, default: 25, aliases: :f
+  def vehicles
+    require_key
 
+    vehicles = Freerider.new((options[:location] || ENV['LOCATION']), ENV['CONSUMER_KEY'])
+    display(vehicles.find_vehicles(options[:fuel_threshold]))
+  end
 
-unless key
-  puts "You must supply a Car2Go consumer key (e.g., 'export CONSUMER_KEY=<your_key>'"
-  exit
+  private
+
+  def display(vehicles)
+    vehicles.each do |vehicle|
+      puts RECORD_DELIMITER
+      puts Formatter.format_vehicle(vehicle.to_json)
+    end
+    puts SUMMARY_BORDER
+    # 25 is the current default
+    notify_suffix = "with a fuel level below #{options[:fuel_threshold]} percent"
+    if vehicles.size > 0
+      cars = if vehicles.size > 1
+               'cars'
+             else
+               'car'
+             end
+
+      print "#{vehicles.size} #{cars} found #{notify_suffix}"
+    else
+      print "No cars found #{notify_suffix}"
+    end
+    puts "\n#{SUMMARY_BORDER}"
+  end
+
+  # this is set using an environment variable
+  def require_key
+    return if ENV['CONSUMER_KEY']
+    puts 'Set environment variable CONSUMER_KEY to your Car2Go consumer key.'
+    puts 'For example:'
+    puts '    $ CONSUMER_KEY=mykey bin/freerider v'
+    false
+  end
 end
 
-puts 'location will default' if !location || location.empty?
-
-vehicles = Freerider.new(location, key).find_vehicles(fuel_threshold)
-vehicles.each do |vehicle|
-  puts RECORD_DELIMITER
-  puts Formatter.format_vehicle(vehicle.to_json)
-end
-puts SUMMARY_BORDER
-# 25 is the current default
-notify_suffix = "with a fuel level below #{fuel_threshold || 25} percent"
-if vehicles.size > 0
-  cars = if vehicles.size > 1
-           'cars'
-         else
-           'car'
-         end
-
-  print "#{vehicles.size} #{cars} found #{notify_suffix}"
-else
-  print "No cars found #{notify_suffix}"
-end
-puts "\n#{SUMMARY_BORDER}"
+FreeriderScript.start(ARGV)
