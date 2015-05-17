@@ -2,14 +2,14 @@
 
 require 'freerider'
 require 'formatter'
-require 'pry'
 
-summary_border = '=========================='
-record_delimiter = summary_border + summary_border
+SUMMARY_BORDER = '=========================='
+RECORD_DELIMITER = SUMMARY_BORDER + SUMMARY_BORDER
 
 key = ENV['CONSUMER_KEY']
 location = ARGV[0].chomp if ARGV[0]
-threshold = ARGV[1].chomp.to_i if ARGV[1]
+fuel_threshold = ARGV[1].chomp.to_i if ARGV[1]
+
 
 unless key
   puts "You must supply a Car2Go consumer key (e.g., 'export CONSUMER_KEY=<your_key>'"
@@ -18,14 +18,14 @@ end
 
 puts 'location will default' if !location || location.empty?
 
-vehicles = Freerider.new(location, key).find_vehicles(threshold)
+vehicles = Freerider.new(location, key).find_vehicles(fuel_threshold)
 vehicles.each do |vehicle|
-  puts record_delimiter
+  puts RECORD_DELIMITER
   puts Formatter.format_vehicle(vehicle.to_json)
 end
-puts summary_border
+puts SUMMARY_BORDER
 # 25 is the current default
-notify_suffix = "with a fuel level below #{threshold || 25} percent"
+notify_suffix = "with a fuel level below #{fuel_threshold || 25} percent"
 if vehicles.size > 0
   cars = if vehicles.size > 1
            'cars'
@@ -37,4 +37,4 @@ if vehicles.size > 0
 else
   print "No cars found #{notify_suffix}"
 end
-puts "\n#{summary_border}"
+puts "\n#{SUMMARY_BORDER}"

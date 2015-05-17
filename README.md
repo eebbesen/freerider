@@ -47,11 +47,11 @@ or
     $ export CONSUMER_KEY=<your_car2go_consumer_key> 
     $ bin/freerider [<location>] [<fuel_threshold>]
 
-`location` will default to `twincities`.
+`location` will default to `twincities` (represent!).
 `fuel_threshold` will default to `25`.
 
 ## Dependencies
-I have specified Ruby 2.2.0 in the Gemfile, but you can probably get away with any version 2.0.0 or greater.  Ruby 1.9.3 will not work.
+I work/test using Ruby 2.2.x but any version 2.0.0 or greater will work.  Ruby 1.9.3 is right out.
 
 ## Contributing
 
@@ -66,3 +66,8 @@ I have specified Ruby 2.2.0 in the Gemfile, but you can probably get away with a
 ### Get geocode for address
 http://www.gpsvisualizer.com/geocode
 I use this to generate geocode for addresses for testing
+
+### Distance calculation
+#### Geocoder gem
+geo_distance = Geocoder::Calculations.distance_between([-93.09774, 44.93669],[-93.17795, 44.94289])
+Geocoder::Calculations.to_miles(geo_distance)

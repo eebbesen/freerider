@@ -28,7 +28,6 @@ class Formatter
                       end
 
     # Add city if address has city part
-    binding.pry
     if address_parts[1]
       ciudad = address_parts[1].split ' '
       ciudad.shift unless (ciudad.first =~ /\d/).nil? # zipcode
