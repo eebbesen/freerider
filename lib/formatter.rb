@@ -1,3 +1,8 @@
+##
+# Addresses don't always have
+# * a city
+# * a zip code
+# * a numeric component of the street address
 class Formatter
   def self.format_vehicle(vehicle)
     address = format_address vehicle
@@ -9,14 +14,24 @@ class Formatter
 
   def self.format_address(vehicle)
     address_parts = (JSON.parse vehicle)['address'].split ','
+    return address_parts[0] if address_parts.size == 1
 
     street_address = address_parts[0].split ' '
-    number = street_address.pop
-    street_address = street_address.join ' '
-    display_address = "#{number} #{street_address}"
+
+    # Prepend with number if address has number part
+    display_address = if (street_address.last =~ /\d/).nil?
+                        street_address.join ' '
+                      else
+                        number = street_address.pop
+                        street_address = street_address.join ' '
+                        "#{number} #{street_address}"
+                      end
+
+    # Add city if address has city part
+    binding.pry
     if address_parts[1]
       ciudad = address_parts[1].split ' '
-      ciudad.shift
+      ciudad.shift unless (ciudad.first =~ /\d/).nil? # zipcode
       display_address += ", #{ciudad.join ' '}"
     end
 
@@ -27,7 +42,7 @@ class Formatter
     geocode = (JSON.parse vehicle)['coordinates']
     latitude = geocode[0]
     longitude = geocode[1]
-    accuracy = geocode[2]
+    # accuracy = geocode[2]
 
     "https://www.google.com/maps/preview?q=#{longitude},#{latitude}"
   end
