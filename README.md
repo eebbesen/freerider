@@ -41,7 +41,7 @@ to build _and_ install the gem
 
 After packaging you can run
 
-    $ CONSUMER_KEY=<your_car2go_consumer_key> FROM_LOCATION='Tivoli, Danmark' bin/freerider [-l <location>] [-f <fuel_threshold>] [-r <radius>]
+    $ CONSUMER_KEY=<your_car2go_consumer_key> FROM_LOCATION='<address_or_place_name>' bin/freerider [-l <location>] [-f <fuel_threshold>] [-r <radius>]
 or
 
     $ export CONSUMER_KEY=<your_car2go_consumer_key> 
