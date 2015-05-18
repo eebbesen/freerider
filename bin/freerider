@@ -3,6 +3,7 @@
 require 'thor'
 require_relative '../lib/freerider'
 require_relative '../lib/formatter'
+require_relative '../lib/geolocutor'
 
 ##
 # Command-line interface for Freerider
@@ -13,11 +14,11 @@ class FreeriderScript < Thor
   desc 'vehicles', "Get vehicles: location defaults to 'twincities', fuel_threshold defaults to '25'"
   option :location, default: 'twincities', aliases: :l
   option :fuel_threshold, type: :numeric, default: 25, aliases: :f
+  option :radius, type: :numeric, aliases: :r
   def vehicles
     require_key
-
-    vehicles = Freerider.new((options[:location] || ENV['LOCATION']), ENV['CONSUMER_KEY'])
-    display(vehicles.find_vehicles(options[:fuel_threshold]))
+    vehicles = Freerider.new((options[:location] || ENV['FROM_LOCATION']), ENV['CONSUMER_KEY'])
+    display(vehicles.find_vehicles(options[:fuel_threshold], options[:radius]))
   end
 
   private
@@ -27,9 +28,13 @@ class FreeriderScript < Thor
       puts RECORD_DELIMITER
       puts Formatter.format_vehicle(vehicle.to_json)
     end
+    summarize(vehicles)
+  end
+
+  def summarize(vehicles)
     puts SUMMARY_BORDER
-    # 25 is the current default
-    notify_suffix = "with a fuel level below #{options[:fuel_threshold]} percent"
+
+    notify_suffix = "with a fuel level below #{options[:fuel_threshold]} percent and within radius #{options[:radius]}"
     if vehicles.size > 0
       cars = if vehicles.size > 1
                'cars'
@@ -41,6 +46,7 @@ class FreeriderScript < Thor
     else
       print "No cars found #{notify_suffix}"
     end
+
     puts "\n#{SUMMARY_BORDER}"
   end
 

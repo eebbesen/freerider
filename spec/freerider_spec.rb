@@ -27,7 +27,7 @@ class Freerider
 end
 
 describe Freerider do
-  subject { Freerider.new('twincities', 'fake_key') }
+  subject { Freerider.new('twincities', 'fake_key', 'Grand Ave 1600, 55105 St Paul') }
 
   describe '#find_vehicles' do
     it 'should return json for all vehicles below 25 by default' do
@@ -40,6 +40,11 @@ describe Freerider do
       vehicles = subject.find_vehicles(26)
       expect(vehicles.size).to eq 2
       expect(subject.car2go.location).to eq 'twincities'
+    end
+
+    it 'should return json for all vehicles within the given radius' do
+      vehicles = subject.find_vehicles(100, 1)
+      expect(vehicles.size).to eq 1
     end
   end
 end

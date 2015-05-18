@@ -3,6 +3,7 @@ PATH
   specs:
     freerider (0.0.3)
       caruby2go
+      geocoder
 
 GEM
   remote: https://rubygems.org/
@@ -15,6 +16,7 @@ GEM
     diff-lcs (1.2.5)
     ffi (1.9.6)
     formatador (0.2.5)
+    geocoder (1.2.8)
     guard (2.11.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)

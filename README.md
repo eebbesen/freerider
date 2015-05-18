@@ -41,15 +41,15 @@ to build _and_ install the gem
 
 After packaging you can run
 
-    $ CONSUMER_KEY=<your_car2go_consumer_key> bin/freerider [<location>] [<fuel_threshold>]
+    $ CONSUMER_KEY=<your_car2go_consumer_key> FROM_LOCATION='Macalester College, Saint Paul, MN' bin/freerider [-l <location>] [-f <fuel_threshold>] [-r <radius>]
 or
 
     $ export CONSUMER_KEY=<your_car2go_consumer_key> 
-    $ bin/freerider [<location>] [<fuel_threshold>]
+    $ bin/freerider [-l <location>] [-f <fuel_threshold>] [-r <radius>]
 
 For example
 
-    $ export CONSUMER_KEY=conkey bin/freerider v -l kobenhavn -f 20
+    $ export CONSUMER_KEY=conkey bin/freerider v -l kobenhavn -f 20 -r 3
 will use your consumer key and retrieve all vehicles in Copenhagen that are 20 or less fueled
 
 `location` will default to `twincities` (represent!).
@@ -68,11 +68,12 @@ I work/test using Ruby 2.2.x but any version 2.0.0 or greater will work.  Ruby 1
 
 
 ## Helpful tools
-### Get geocode for address
-http://www.gpsvisualizer.com/geocode
-I use this to generate geocode for addresses for testing
+### Geocoder gem
+#### Get geocode for address or business name
 
-### Distance calculation
-#### Geocoder gem
-geo_distance = Geocoder::Calculations.distance_between([-93.09774, 44.93669],[-93.17795, 44.94289])
-Geocoder::Calculations.to_miles(geo_distance)
+    Geocoder.coordinates("Fasika, Saint Paul, MN")
+
+#### Distance calculation
+
+    geo_distance = Geocoder::Calculations.distance_between([-93.09774, 44.93669],[-93.17795, 44.94289])
+    Geocoder::Calculations.to_miles(geo_distance)
