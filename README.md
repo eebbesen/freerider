@@ -6,7 +6,7 @@ freerider identifies car2go vehicles in your area which you can refuel for free 
 ### What?
 freerider is a gem that uses [the car2go api](https://code.google.com/p/car2go/wiki/index_v2_1) to locate local car2go vehicles that are less than a specified percent fueled.
 
-You need to [get your own consumer key from car2go](https://www.car2go.com/en/austin/car2go-apps/).
+You need to [get your own consumer key from car2go](https://www.car2go.com/en/austin/car2go-apps/) to use this gem.
 
 ### Why?
 car2go offers 20 minutes of free time when you refuel a vehicle that is less than 25 percent fueled.  See the Parking and refueling section of [this page](https://www.car2go.com/en/minneapolis/how-does-car2go-work/) for details.
@@ -50,7 +50,7 @@ or
 For example
 
     $ export CONSUMER_KEY=conkey bin/freerider v -l kobenhavn -f 20 -r 3
-will use your consumer key and retrieve all vehicles in Copenhagen that are 20 or less fueled
+will use your consumer key and retrieve all vehicles withing three miles of a point in Copenhagen, Denmark that are 20 or less fueled
 
 `location` will default to `twincities` (represent!).
 `fuel_threshold` will default to `25`.
