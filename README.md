@@ -50,7 +50,7 @@ or
 For example
 
     $ export CONSUMER_KEY=conkey bin/freerider v -l kobenhavn -f 20 -r 3
-will use your consumer key and retrieve all vehicles withing three miles of a point in Copenhagen, Denmark that are 20 or less fueled
+will use your consumer key and retrieve all vehicles withing three miles of a point in Copenhagen, Denmark that are 20 percent or less fueled
 
 `location` will default to `twincities` (represent!).
 `fuel_threshold` will default to `25`.
