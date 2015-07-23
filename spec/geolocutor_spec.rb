@@ -9,6 +9,7 @@ describe Geolocutor do
   describe '#initialize' do
     it 'should create coordinates from address' do
       geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
+
       expect(geolocutor.coordinates).to eq([44.9397631, -93.1687294])
     end
 
@@ -33,6 +34,10 @@ describe Geolocutor do
   describe '#distance_from_here' do
     before do
       @geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
+      # avoid rate limiting errors
+      puts 'sleeping...'
+      sleep 3
+      puts 'done sleeping'
     end
 
     it 'should return zero when the from and to are the same' do
