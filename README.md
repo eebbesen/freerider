@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/eebbesen/freerider.svg?style=shield)](https://circleci.com/gh/eebbesen/freerider)
+
 # Freerider
 
 freerider identifies car2go vehicles in your area which you can refuel for free minutes!
