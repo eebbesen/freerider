@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    freerider (0.0.3)
+    freerider (0.0.4)
       caruby2go
       geocoder
 

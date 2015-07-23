@@ -9,12 +9,12 @@ describe Geolocutor do
   describe '#initialize' do
     it 'should create coordinates from address' do
       geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
-      (geolocutor.coordinates).should eql([44.9397631, -93.1687294])
+      expect(geolocutor.coordinates).to eq([44.9397631, -93.1687294])
     end
 
     it 'should preserve passed-in coordinates' do
       geolocutor = Geolocutor.new [44.93999, -93.16789]
-      (geolocutor.coordinates).should eql([44.9397631, -93.1687294])
+      expect(geolocutor.coordinates).to eq([44.9397631, -93.1687294])
     end
 
     it 'should raise an error if no location passed in' do
@@ -26,7 +26,7 @@ describe Geolocutor do
     it 'should grab coordinates from vehicle JSON' do
       geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
       coordinates = geolocutor.send(:extract_coordinates, JSON.parse(vehicle))
-      coordinates.should eql([44.93999, -93.16789])
+      expect(coordinates).to eq([44.93999, -93.16789])
     end
   end
 
@@ -37,13 +37,13 @@ describe Geolocutor do
 
     it 'should return zero when the from and to are the same' do
       distance = @geolocutor.distance_from_here(JSON.parse(vehicle))
-      distance.should eq 0
+      expect(distance).to eq 0
     end
 
     context 'when looking for the disance in miles' do
       it 'should return the proper value' do
         distance = @geolocutor.distance_from_here(JSON.parse(vehicle_2))
-        distance.should eql 3.215852550959139
+        expect(distance).to eq 3.215852550959139
       end
     end
 
@@ -51,7 +51,7 @@ describe Geolocutor do
       it 'should return the proper value' do
         geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN', true)
         distance = geolocutor.distance_from_here(JSON.parse(vehicle_2))
-        distance.should eq 8.329019877940437
+        expect(distance).to eq 8.329019877940437
       end
     end
   end
