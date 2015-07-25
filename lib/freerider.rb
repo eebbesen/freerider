@@ -17,7 +17,7 @@ class Freerider
     upper_fuel_threshold = default_if_empty(upper_fuel_threshold, 25)
     radius = default_if_empty(radius, 100)
     (@car2go.vehicles.select do |vehicle|
-      within_fuel_range(vehicle, upper_fuel_threshold) && within_radius(vehicle, radius)
+       within_fuel_range(vehicle, upper_fuel_threshold) && within_radius(vehicle, radius)
      end
     ).compact
   end
