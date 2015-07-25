@@ -2,7 +2,7 @@ require 'spec_helper'
 
 Geocoder.configure(
   lookup: :nominatim,
-  http_headers: { "User-Agent" => "freerider gem tests (github.com/eebbesen/freerider)" }
+  http_headers: { 'User-Agent' => 'freerider gem tests (github.com/eebbesen/freerider)' }
 )
 
 describe Geolocutor do
@@ -15,12 +15,12 @@ describe Geolocutor do
     it 'should create coordinates from address' do
       geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
 
-      expect(geolocutor.coordinates.map{|i| i.round(2)}).to eq([44.94, -93.17])
+      expect(geolocutor.coordinates.map { |i| i.round(2) }).to eq([44.94, -93.17])
     end
 
     it 'should preserve passed-in coordinates' do
       geolocutor = Geolocutor.new [44.93999, -93.16789]
-      expect(geolocutor.coordinates.map{|i| i.round(2)}).to eq([44.94, -93.17])
+      expect(geolocutor.coordinates.map { |i| i.round(2) }).to eq([44.94, -93.17])
     end
 
     it 'should raise an error if no location passed in' do
@@ -32,7 +32,7 @@ describe Geolocutor do
     it 'should grab coordinates from vehicle JSON' do
       geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
       coordinates = geolocutor.send(:extract_coordinates, JSON.parse(vehicle))
-      expect(coordinates.map{|i| i.round(2)}).to eq([44.94, -93.17])
+      expect(coordinates.map { |i| i.round(2) }).to eq([44.94, -93.17])
     end
   end
 
