@@ -35,9 +35,9 @@ describe Geolocutor do
     before do
       @geolocutor = Geolocutor.new('1600 Grand Ave, Saint Paul, MN')
       # avoid rate limiting errors
-      puts 'sleeping...'
+      puts 'Avoid rate limiting errors on Geolocutor by sleeping 3 seconds...'
       sleep 3
-      puts 'done sleeping'
+      puts '...done sleeping'
     end
 
     it 'should return zero when the from and to are the same' do
