@@ -24,7 +24,7 @@ describe Geolocutor do
     end
 
     it 'should raise an error if no location passed in' do
-      expect { Geolocutor.new nil }.to raise_error(ArgumentError, 'You must supply coordinates, and address or a location name')
+      expect { Geolocutor.new nil }.to raise_error(ArgumentError, 'You must supply coordinates, an address or a location name')
     end
   end
 

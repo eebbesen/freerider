@@ -21,6 +21,16 @@ class FreeriderScript < Thor
     display(vehicles.find_vehicles(options[:fuel_threshold], options[:radius]))
   end
 
+  desc 'locations', 'Get all valid locations for calling vehicles'
+  def locations
+    require_key
+    locations = Freerider.new(nil)
+    locs = locations.list_locations.collect do |loc|
+      loc['locationName'].gsub(/\s+/, "").downcase
+    end
+    puts locs.sort
+  end
+
   private
 
   def display(vehicles)

@@ -22,6 +22,10 @@ class Freerider
     ).compact
   end
 
+  def list_locations
+    @car2go.locations
+  end
+
   private
 
   def within_fuel_range(vehicle, upper_fuel_threshold)

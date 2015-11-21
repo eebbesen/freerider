@@ -23,12 +23,13 @@ class Geolocutor
   private
 
   def coordinatize(location)
-    fail(ArgumentError, 'You must supply coordinates, and address or a location name') if location.nil?
+    fail(ArgumentError, 'You must supply coordinates, an address or a location name') if location.nil?
     Geocoder.coordinates(location)
   end
 
   # car2go reverses the lat/long
   # and also includes an accuracy value which must be removed
+  # e.g. [-93.168697, 44.939983, 0] for 1600 Grand Ave, Saint Paul, MN  55014
   def extract_coordinates(vehicle_json)
     coordinates = vehicle_json['coordinates']
     coordinates.pop

@@ -3,6 +3,9 @@
 # * a city
 # * a zip code
 # * a numeric component of the street address
+# 
+# Car2Go provides address in the follwing format:
+# [street] [street number], [zip code] [city] 
 class Formatter
   def self.format_vehicle(vehicle)
     address = format_address vehicle
