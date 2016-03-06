@@ -73,7 +73,7 @@ I work/test using Ruby 2.2.x but any version 2.0.0 or greater will work.  Ruby 1
 
 
 ## Helpful tools
-### Geocoder gem
+### [Geocoder gem](https://github.com/alexreisner/geocoder)
 #### Get geocode for address or business name
 
     Geocoder.coordinates("Fasika, Saint Paul, MN")
