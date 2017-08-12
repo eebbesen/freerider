@@ -7,7 +7,7 @@ freerider identifies Car2Go vehicles in your area
 [_Previously_ Car2Go offerred 20 minutes of free time to drivers who refueled vehicles with a fuel level under 25%.](https://www.car2go.com/en/minneapolis/how-does-car2go-work/
 )  
 
-This is no longer the case (at least in the Twin Cities).  However you _can_get credit by moving Car2Go vehicles that are in violation of snow emergency restrictions (you need to email Car2Go with start/stop vehicle location and time of move.)
+This is no longer the case (at least in the Twin Cities).  However you _can_ get credit by moving Car2Go vehicles that are in violation of snow emergency restrictions (you need to email Car2Go with start/stop vehicle location and time of move.)
 http://minneapolis.car2go.com/minneapolis-car2go-faqs/
 
 So maybe you can use this to make sure you find a car that you don't have to refuel out of your own pocket.
